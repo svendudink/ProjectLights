@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, BrowserRouter, Routes } from "react-router-dom";
+import "./App.css";
+import { GlobalContextProvider } from "./components/context/GlobalContext";
+import DrawerAppBar from "./components/DrawerAppBar";
+import BasicController from "./views/BasicController";
+import CreateMapping from "./views/CreateMapping";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalContextProvider>
+      <BrowserRouter>
+        <div className="App">
+          <DrawerAppBar />
+          <Routes>
+            <Route path="/BasicController" element={<BasicController />} />
+            <Route path="/CreateMapping" element={<CreateMapping />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </GlobalContextProvider>
   );
 }
 
